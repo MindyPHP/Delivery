@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Mindy\Delivery\Service\Ems;
+namespace Mindy\Delivery\Service;
 
 use GuzzleHttp\Client;
 use Mindy\Delivery\DimensionsInterface;
@@ -17,7 +17,6 @@ use Mindy\Delivery\LocationInterface;
 use Mindy\Delivery\ParametersInterface;
 use Mindy\Delivery\Result;
 use Mindy\Delivery\ResultInterface;
-use Mindy\Delivery\Service\DeliveryServiceInterface;
 
 /**
  * Class EmsService.

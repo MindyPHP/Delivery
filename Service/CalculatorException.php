@@ -9,10 +9,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Mindy\Delivery;
+namespace Mindy\Delivery\Service;
 
-use PHPUnit\Framework\TestCase;
-
-class DeliveryTest extends TestCase
+class CalculatorException extends \Exception
 {
 }

@@ -14,15 +14,15 @@ namespace Mindy\Delivery;
 class Location implements LocationInterface
 {
     /**
-     * @var string|int
+     * @var string
      */
     protected $country;
     /**
-     * @var string|int
+     * @var string
      */
     protected $region;
     /**
-     * @var string|int
+     * @var string
      */
     protected $city;
     /**
@@ -30,9 +30,23 @@ class Location implements LocationInterface
      */
     protected $zipcode;
     /**
-     * @var string|int
+     * @var string
      */
     protected $address;
+
+    /**
+     * Location constructor.
+     *
+     * @param array $data
+     */
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 
     /**
      * {@inheritdoc}
@@ -43,7 +57,7 @@ class Location implements LocationInterface
     }
 
     /**
-     * @param int|string $country
+     * @param string $country
      */
     public function setCountry($country)
     {
@@ -59,7 +73,7 @@ class Location implements LocationInterface
     }
 
     /**
-     * @param int|string $region
+     * @param string $region
      */
     public function setRegion($region)
     {
@@ -75,7 +89,7 @@ class Location implements LocationInterface
     }
 
     /**
-     * @param int|string $city
+     * @param string $city
      */
     public function setCity($city)
     {
@@ -107,10 +121,26 @@ class Location implements LocationInterface
     }
 
     /**
-     * @param int|string $address
+     * @param string $address
      */
     public function setAddress($address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFullAddress()
+    {
+        $data = [
+            $this->country,
+            $this->region,
+            $this->city,
+            $this->address,
+            $this->zipcode
+        ];
+
+        return implode(', ', array_filter($data));
     }
 }

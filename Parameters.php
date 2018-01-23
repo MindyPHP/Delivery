@@ -23,9 +23,21 @@ class Parameters implements ParametersInterface
     protected $selfDelivery;
 
     /**
+     * @param array $data
+     */
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function isSelfPickup()
+    public function isSelfPickup(): bool
     {
         return $this->selfPickup;
     }
@@ -35,13 +47,13 @@ class Parameters implements ParametersInterface
      */
     public function setSelfPickup($selfPickup)
     {
-        $this->selfPickup = $selfPickup;
+        $this->selfPickup = (bool)$selfPickup;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isSelfDelivery()
+    public function isSelfDelivery(): bool
     {
         return $this->selfDelivery;
     }
@@ -51,6 +63,6 @@ class Parameters implements ParametersInterface
      */
     public function setSelfDelivery($selfDelivery)
     {
-        $this->selfDelivery = $selfDelivery;
+        $this->selfDelivery = (bool)$selfDelivery;
     }
 }

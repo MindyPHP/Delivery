@@ -29,11 +29,9 @@ interface DeliveryServiceInterface
     public function getPrice(LocationInterface $from, LocationInterface $to, DimensionsInterface $dimensions, ParametersInterface $parameters = null): ResultInterface;
 
     /**
-     * @param string $country
-     * @param string $region
-     * @param string $city
+     * @param LocationInterface $location
      *
      * @return bool
      */
-    public function support($country, $region, $city): bool;
+    public function support(LocationInterface $location): bool;
 }

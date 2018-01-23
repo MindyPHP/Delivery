@@ -35,6 +35,18 @@ class Dimensions implements DimensionsInterface
     protected $length;
 
     /**
+     * @param array $data
+     */
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getLength()
@@ -111,6 +123,19 @@ class Dimensions implements DimensionsInterface
      */
     public function setVolume($volume)
     {
-        $this->volume = $volume;
+        $this->volume = (float)$volume;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'width' => $this->getWidth(),
+            'length' => $this->getLength(),
+            'volume' => $this->getVolume(),
+            'height' => $this->getHeight(),
+        ];
     }
 }

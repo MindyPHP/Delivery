@@ -14,27 +14,32 @@ namespace Mindy\Delivery;
 interface LocationInterface
 {
     /**
-     * @return int|string
+     * @return string
      */
     public function getCountry();
 
     /**
-     * @return int|string
+     * @return string
      */
     public function getRegion();
 
     /**
-     * @return int|string
+     * @return string
      */
     public function getCity();
 
     /**
-     * @return int|string
+     * @return string
      */
     public function getZipCode();
 
     /**
-     * @return int|string
+     * @return string
      */
     public function getAddress();
+
+    /**
+     * @return string
+     */
+    public function getFullAddress();
 }

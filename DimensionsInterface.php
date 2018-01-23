@@ -39,4 +39,9 @@ interface DimensionsInterface
      * @return float
      */
     public function getVolume();
+
+    /**
+     * @return array
+     */
+    public function toArray(): array;
 }

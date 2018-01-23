@@ -9,15 +9,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Mindy\Delivery\Service\Dpd;
+namespace Mindy\Delivery\Service;
 
 use Mindy\Delivery\DimensionsInterface;
 use Mindy\Delivery\LocationInterface;
 use Mindy\Delivery\ParametersInterface;
-use Mindy\Delivery\RateLimitException;
 use Mindy\Delivery\Result;
 use Mindy\Delivery\ResultInterface;
-use Mindy\Delivery\Service\DeliveryServiceInterface;
 use Mindy\Delivery\UnknownLocationException;
 use SoapClient;
 
@@ -47,34 +45,34 @@ class DpdService implements DeliveryServiceInterface
     /**
      * DpdService constructor.
      *
-     * @param $apiToken
-     * @param $password
-     * @param bool $test
+     * @param string $apiToken
+     * @param string $password
+     * @param bool   $test
      */
-    public function __construct($apiToken, $password, $test = false)
+    public function __construct(string $apiToken, string $password, $test = false)
     {
         $this->apiToken = $apiToken;
         $this->password = $password;
         $this->test = $test;
     }
 
-    protected function request($service, $method, array $parameters)
+    /**
+     * @param $service
+     * @param $method
+     * @param array $parameters
+     *
+     * @return array
+     */
+    protected function request($service, $method, array $parameters): array
     {
-        try {
-            return (array) call_user_func([$this->getClient($service), $method], [
-                'request' => array_merge($parameters, [
-                    'auth' => [
-                        'clientNumber' => $this->apiToken,
-                        'clientKey' => $this->password,
-                    ],
-                ]),
-            ]);
-        } catch (\Exception $e) {
-            if (0 === mb_strpos($e->getMessage(), 'Превышен лимит', 0, 'UTF-8')) {
-                throw new RateLimitException($e->getMessage());
-            }
-            throw $e;
-        }
+        return (array) call_user_func([$this->getClient($service), $method], [
+            'request' => array_merge($parameters, [
+                'auth' => [
+                    'clientNumber' => $this->apiToken,
+                    'clientKey' => $this->password,
+                ],
+            ]),
+        ]);
     }
 
     /**
