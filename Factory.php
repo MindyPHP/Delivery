@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Mindy\Bundle\RiseBundle\Delivery;
+namespace Mindy\Delivery;
 
 use Mindy\Delivery\Service\DeliveryServiceInterface;
 
