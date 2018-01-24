@@ -1,4 +1,4 @@
-# Компонент работы с корзиной покупателя
+# Delivery component
 
 [![Build Status](https://travis-ci.org/MindyPHP/Delivery.svg?branch=master)](https://travis-ci.org/MindyPHP/Delivery)
 [![codecov](https://codecov.io/gh/MindyPHP/Delivery/branch/master/graph/badge.svg)](https://codecov.io/gh/MindyPHP/Delivery)

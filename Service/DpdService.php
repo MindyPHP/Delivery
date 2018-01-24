@@ -319,8 +319,8 @@ class DpdService implements DeliveryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function support($country, $region, $city): bool
+    public function support(LocationInterface $location): bool
     {
-        return null !== $this->findCityId($country, $region, $city);
+        return null !== $this->findCityId($location->getCountry(), $location->getRegion(), $location->getCity());
     }
 }

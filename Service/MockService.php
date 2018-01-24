@@ -35,7 +35,7 @@ class MockService implements DeliveryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function support($country, $region, $city): bool
+    public function support(LocationInterface $location): bool
     {
         return true;
     }

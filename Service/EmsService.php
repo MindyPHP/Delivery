@@ -156,8 +156,8 @@ class EmsService implements DeliveryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function support($country, $region, $city): bool
+    public function support(LocationInterface $location): bool
     {
-        return $this->findRegion($region) && $this->findCity($city);
+        return $this->findRegion($location->getRegion()) && $this->findCity($location->getCity());
     }
 }
